@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>紫微斗数视频创作控制台</title>
+    <style>
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        h1 {
+            color: #3370ff;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .table-header {
+            display: flex;
+            background-color: #f0f7ff;
+            padding: 12px 15px;
+            border-radius: 6px 6px 0 0;
+            font-weight: bold;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .table-row {
+            display: flex;
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+            align-items: center;
+            cursor: pointer;
+        }
+        .table-row:hover {
+            background-color: #f9f9f9;
+        }
+        .col {
+            padding: 0 10px;
+        }
+        .col-id { width: 80px; }
+        .col-date { width: 120px; }
+        .col-type { width: 100px; }
+        .col-topic { width: 250px; }
+        .col-audience { width: 200px; }
+        .col-pain { width: 200px; }
+        .col-status { width: 100px; }
+        .col-action { width: 150px; }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .badge-flow {
+            background-color: #ffece0;
+            color: #ff7d00;
+        }
+        .badge-persona {
+            background-color: #e8f5e9;
+            color: #4caf50;
+        }
+        .badge-trust {
+            background-color: #e3f2fd;
+            color: #2196f3;
+        }
+        .badge-status {
+            background-color: #e0f7fa;
+            color: #00bcd4;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 6px 12px;
+            background-color: #3370ff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .btn:hover {
+            background-color: #2860e1;
+        }
+        
+        .form-container {
+            margin-top: 30px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        .form-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #3370ff;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-control {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        select.form-control {
+            height: 38px;
+        }
+        textarea.form-control {
+            min-height: 100px;
+        }
+        .prompt-container {
+            background-color: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            padding: 15px;
+            margin-top: 10px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .action-buttons {
+            margin-top: 20px;
+            text-align: right;
+        }
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #e0e0e0;
+            margin-bottom: 20px;
+        }
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+        }
+        .tab.active {
+            border-bottom: 2px solid #3370ff;
+            color: #3370ff;
+            font-weight: bold;
+        }
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+        }
+        .footer a {
+            color: #3370ff;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>紫微斗数视频创作控制台</h1>
+        
+        <div class="tabs">
+            <div class="tab active">视频列表</div>
+            <div class="tab">创建新视频</div>
+            <div class="tab">数据分析</div>
+        </div>
+        
+        <div class="table-header">
+            <div class="col col-id">ID</div>
+            <div class="col col-date">创建日期</div>
+            <div class="col col-type">视频类型</div>
+            <div class="col col-topic">视频主题</div>
+            <div class="col col-audience">目标受众</div>
+            <div class="col col-status">状态</div>
+            <div class="col col-action">操作</div>
+        </div>
+        
+        <div class="table-row">
+            <div class="col col-id">V001</div>
+            <div class="col col-date">2025-03-26</div>
+            <div class="col col-type"><span class="badge badge-trust">信任型</span></div>
+            <div class="col col-topic">火星在12宫位如何化解</div>
+            <div class="col col-audience">30岁以上命盘人士</div>
+            <div class="col col-status"><span class="badge badge-status">创作中</span></div>
+            <div class="col col-action"><a href="#" class="btn">编辑</a></div>
+        </div>
+        
+        <div class="table-row">
+            <div class="col col-id">V002</div>
+            <div class="col col-date">2025-03-25</div>
+            <div class="col col-type"><span class="badge badge-flow">流量型</span></div>
+            <div class="col col-topic">紫微斗数看2025年财运</div>
+            <div class="col col-audience">25-45岁职场人士</div>
+            <div class="col col-status"><span class="badge badge-status">已完成</span></div>
+            <div class="col col-action"><a href="#" class="btn">查看</a></div>
+        </div>
+        
+        <div class="table-row">
+            <div class="col col-id">V003</div>
+            <div class="col col-date">2025-03-24</div>
+            <div class="col col-type"><span class="badge badge-persona">人设型</span></div>
+            <div class="col col-topic">为什么我的紫微解读不同于传统</div>
+            <div class="col col-audience">对命理感兴趣的新客户</div>
+            <div class="col col-status"><span class="badge badge-status">计划中</span></div>
+            <div class="col col-action"><a href="#" class="btn">编辑</a></div>
+        </div>
+        
+        <div class="form-container">
+            <div class="form-title">编辑视频：火星在12宫位如何化解</div>
+            
+            <div class="form-group">
+                <label>视频ID</label>
+                <input type="text" class="form-control" value="V001" disabled>
+            </div>
+            
+            <div class="form-group">
+                <label>创建日期</label>
+                <input type="text" class="form-control" value="2025-03-26" disabled>
+            </div>
+            
+            <div class="form-group">
+                <label>视频类型</label>
+                <select class="form-control">
+                    <option>流量型</option>
+                    <option>人设型</option>
+                    <option selected>信任型</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>视频主题</label>
+                <input type="text" class="form-control" value="火星在12宫位如何化解">
+            </div>
+            
+            <div class="form-group">
+                <label>目标受众</label>
+                <input type="text" class="form-control" value="30岁以上，有火星在12宫位的命盘人士">
+            </div>
+            
+            <div class="form-group">
+                <label>核心痛点</label>
+                <input type="text" class="form-control" value="不知道如何应对火星在12宫位带来的人际关系挑战">
+            </div>
+            
+            <div class="form-group">
+                <label>DeepSeek提示词（自动生成）</label>
+                <div class="prompt-container">请以紫微斗数命理人生规划师的身份，为我创作一篇关于"火星在12宫位如何化解"的视频脚本。
+
+背景信息：
+- 我是徐向阳，985大学生物学研究生，专注紫微斗数命理人生规划4年
+- 我的风格是专业但不尖锐，沉稳平易近人，能洞察客户内心痛点
+- 我的核心差异化优势是不仅解读紫微斗数命盘，还能提供可落地的解决方案
+- 目标受众是30岁以上，有火星在12宫位的命盘人士
+- 他们的核心痛点是不知道如何应对火星在12宫位带来的人际关系挑战
+
+要求：
+1. 视频类型：信任型视频（6-12分钟，1800-3600字）
+2. 使用"紫微斗数知识点解决方案型"结构
+3. 包含以下部分：
+   - 开场白：吸引有火星在12宫位的观众
+   - 知识点基础解析：火星在12宫位的基本含义
+   - 现实生活影响：具体表现在哪些方面
+   - 传统化解方法评析：传统方法的优缺点
+   - 系统化解方案：从认知、行为、环境三个层面提供解决方案
+   - 不同命盘类型的个性化调整：考虑其他星曜的影响
+   - 案例分析：展示真实案例如何应用解决方案
+   - 实施建议与常见问题解答
+   - 结尾：强调我能提供可落地的解决方案
+
+4. 突出我的核心差异化优势：不仅解读命盘，还提供可落地的解决方案
+5. 语言风格专业但平易近人，避免过于玄学的表达</div>
+                <button class="btn" style="margin-top: 10px;">复制到剪贴板</button>
+            </div>
+            
+            <div class="form-group">
+                <label>AI生成内容（从DeepSeek复制）</label>
+                <textarea class="form-control" placeholder="请将DeepSeek生成的内容粘贴到这里..."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>状态</label>
+                <select class="form-control">
+                    <option>计划中</option>
+                    <option selected>创作中</option>
+                    <option>已完成</option>
+                </select>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="btn" style="background-color: #4caf50;">生成脚本文档</button>
+                <button class="btn">保存</button>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>紫微斗数视频创作控制台 © 2025 徐向阳 | 紫微斗数命理人生规划师</p>
+            <p>版本: 1.0.0 | <a href="#" id="update-link">检查更新</a></p>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
